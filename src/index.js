@@ -69,14 +69,7 @@ const testModule = (function () {
     console.log(searchEntry.value);
     searchForm.appendChild(searchButton);
 
-    searchForm.addEventListener('submit', function () { getWeather(getCity()); event.preventDefault(); });
-   
-    
-    function logSubmit(event) {
-        console.log(`Form Submitted! Time stamp: ${event.timeStamp}`);
-        event.preventDefault();
-      }
-   
+    searchForm.addEventListener('submit', function () { label1.innerText = searchEntry.value; getWeather(getCity()); ; event.preventDefault(); });
 
     //getWeather('london');
 
@@ -120,7 +113,7 @@ const testModule = (function () {
         sunrise = data.sys.sunrise;
         sunset = data.sys.sunset;
 
-        console.log(data);
+        // create weather object
         currentWeatherData(currentTemp, pressure, humidity, description, feelsLike, windSpeed, sunrise, sunset);
 
     }
@@ -155,16 +148,15 @@ const testModule = (function () {
         
         const sunriseTime = fromUnixTime(sunrise)
         const sunsetTime = fromUnixTime(sunset);
-        console.log(fromUnixTime(sunset));
 
         innerContent[0].innerText = "Pressure: \n" + pressure + " hPa";
         innerContent[1].innerText = "Humidity: \n" + humidity + "%";
         innerContent[2].innerText = "Conditions: \n" + description;
-        innerContent[3].innerText = "Temperature: \n" + temp + ' \u00B0';
+        innerContent[3].innerText = "Temp: \n" + temp + ' \u00B0';
         innerContent[4].innerText = "Feels Like: \n" + feelsLike + ' \u00B0';
         innerContent[5].innerText = "Wind Speed: \n" + windSpeed + " mph";
-        innerContent[6].innerText = "Sunrise \n" + sunriseTime.getHours() + ":" + sunriseTime.getMinutes() + "am";
-        innerContent[7].innerText = "Sunset \n" + sunsetTime.getHours() + ":" + sunsetTime.getMinutes() + "pm";
+        innerContent[6].innerText = "Sunrise: \n" + sunriseTime.getHours() + ":" + sunriseTime.getMinutes() + " MST";
+        innerContent[7].innerText = "Sunset: \n" + (sunsetTime.getHours()  )+ ":" + sunsetTime.getMinutes() + " MST";
         
 
     }
